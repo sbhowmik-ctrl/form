@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-blur: 24px;
+}
+.dark {
+  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html,body,#root{
+  height:100%;
+}
+
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color: #0f172a; /* slate-900 fallback */
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: radial-gradient(circle at 0% 0%, #eff6ff 0%, #dbeafe 30%, #ffffff 100%);
+}
+.dark body {
+  background: radial-gradient(circle at 0% 0%, #1e3a8a 0%, #0f172a 50%, #020617 100%);
+}
+
+/* Floating label style (simple) */
+.float-label input:focus + label,
+.float-label input:not(:placeholder-shown) + label,
+.float-label select:focus + label,
+.float-label select:not([value=""]) + label{
+  transform: translateY(-1.6rem) scale(0.9);
+  opacity: 1;
+}
+
+/* Toast container */
+.toast-enter{
+  opacity:0; transform: translateY(8px);
+}
+.toast-enter-active{
+  opacity:1; transform: translateY(0); transition: all .25s ease-out;
+}
+
+/* custom components */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+@layer components {
+  .input-icon {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 text-[20px];
+  }
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
